@@ -89,3 +89,6 @@ ENV/
 # Rope project settings
 .ropeproject
 .idea
+
+# exclude local DB folder
+local-db/
