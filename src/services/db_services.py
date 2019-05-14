@@ -1,8 +1,4 @@
-from src.constants.constants import (
-    HTTP_status_201,
-    HTTP_status_422
-)
-from src.commons.json_utils import to_json
+import csv
 
 
 class LocalDatabase():
@@ -23,7 +19,12 @@ class LocalDatabase():
         if not self.is_exist(data_str):
             with open(self.file_path, 'a') as f:
                 f.write('{0}\n'.format(data_str))
-            return to_json({"message": "saved to DataBase"}), HTTP_status_201
+            return True
         else:
-            return to_json({"message": "entry already exits in DataBase"}), HTTP_status_422
+            return False
 
+    def read(self, type):
+        with open(self.file_path, 'rt')as f:
+            data = csv.reader(f)
+            for row in data:
+                print(row)

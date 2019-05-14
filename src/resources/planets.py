@@ -8,7 +8,12 @@ from src.services.planets import PlanetsService
 from src.services.db_services import LocalDatabase
 
 from src.swagger.swagger import LocalSave
-from src.constants.constants import db_file_path
+from src.commons.json_utils import to_json
+from src.constants.constants import (
+    db_file_path,
+    HTTP_status_201,
+    HTTP_status_422
+)
 
 
 class PlanetsResource(Resource):
@@ -55,5 +60,7 @@ class PlanetsResource(Resource):
     def post(self):
         data = json.loads(request.data.decode('utf-8'))
         csv_data = "planet,{0},{1}".format(data['name'], data['url'])
-        out = self.db_service.write(csv_data)
-        return out
+        if self.db_service.write(csv_data):
+            return to_json({"message": "planet saved to DataBase"}), HTTP_status_201
+        else:
+            return to_json({"message": "entry already exits in DataBase"}, is_error=True), HTTP_status_422

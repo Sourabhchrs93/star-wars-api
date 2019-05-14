@@ -8,7 +8,12 @@ from src.services.movies import MoviesService
 from src.services.db_services import LocalDatabase
 
 from src.swagger.swagger import LocalSave
-from src.constants.constants import db_file_path
+from src.commons.json_utils import to_json
+from src.constants.constants import (
+    db_file_path,
+    HTTP_status_201,
+    HTTP_status_422
+)
 
 
 class MoviesResource(Resource):
@@ -55,4 +60,7 @@ class MoviesResource(Resource):
     def post(self):
         data = json.loads(request.data.decode('utf-8'))
         csv_data = "movie,{0},{1}".format(data['name'], data['url'])
-        self.db_service.write(csv_data)
+        if self.db_service.write(csv_data):
+            return to_json({"message": "movie saved to DataBase"}), HTTP_status_201
+        else:
+            return to_json({"message": "entry already exits in DataBase"}, is_error=True), HTTP_status_422
