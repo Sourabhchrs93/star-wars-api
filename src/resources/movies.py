@@ -40,7 +40,6 @@ class MoviesResource(Resource):
         resp = self.movies_service.search(keyword, page)
         return resp
 
-
     @swagger.operation(
         nickname='save movie details',
         notes='save movie details in a local storage',

@@ -55,4 +55,5 @@ class PlanetsResource(Resource):
     def post(self):
         data = json.loads(request.data.decode('utf-8'))
         csv_data = "planet,{0},{1}".format(data['name'], data['url'])
-        self.db_service.write(csv_data)
+        out = self.db_service.write(csv_data)
+        return out
