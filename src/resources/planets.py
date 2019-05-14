@@ -59,7 +59,7 @@ class PlanetsResource(Resource):
         ])
     def post(self):
         data = json.loads(request.data.decode('utf-8'))
-        csv_data = "planet,{0},{1}".format(data['name'], data['url'])
+        csv_data = "planets,{0},{1}".format(data['name'], data['url'])
         if self.db_service.write(csv_data):
             return to_json({"message": "planet saved to DataBase"}), HTTP_status_201
         else:

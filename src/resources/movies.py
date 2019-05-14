@@ -59,7 +59,7 @@ class MoviesResource(Resource):
         ])
     def post(self):
         data = json.loads(request.data.decode('utf-8'))
-        csv_data = "movie,{0},{1}".format(data['name'], data['url'])
+        csv_data = "movies,{0},{1}".format(data['name'], data['url'])
         if self.db_service.write(csv_data):
             return to_json({"message": "movie saved to DataBase"}), HTTP_status_201
         else:

@@ -1,7 +1,7 @@
 import csv
 
 
-class LocalDatabase():
+class LocalDatabase:
 
     def __init__(self, file_path):
         self.file_path = file_path
@@ -23,8 +23,14 @@ class LocalDatabase():
         else:
             return False
 
-    def read(self, type):
+    def read(self, fav_type):
+        out_data = []
         with open(self.file_path, 'rt')as f:
             data = csv.reader(f)
             for row in data:
-                print(row)
+                if fav_type == row[0]:
+                    out_data.append({'name': row[1], 'url': row[2]})
+                elif fav_type == "all":
+                    out_data.append({'name': row[1], 'url': row[2]})
+
+        return out_data, len(out_data)
