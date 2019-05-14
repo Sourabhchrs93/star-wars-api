@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_restful_swagger import swagger
 
 from src.resources.planets import PlanetsResource
+from src.resources.movies import MoviesResource
 
 app = Flask(__name__)
 api = swagger.docs(
@@ -18,6 +19,7 @@ def hello():
 
 
 api.add_resource(PlanetsResource, '/api/planets')
+api.add_resource(MoviesResource, '/api/movies')
 
 
 if __name__ == '__main__':
