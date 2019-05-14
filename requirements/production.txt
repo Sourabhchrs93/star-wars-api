@@ -1,3 +1,0 @@
-# Dependencies for the production environment
-
--r base.txt

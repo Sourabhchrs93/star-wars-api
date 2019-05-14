@@ -1,3 +1,0 @@
-# Dependencies for the dev environment
-
--r base.txt
