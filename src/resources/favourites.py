@@ -1,13 +1,11 @@
 from flask_restful import Resource
-from flask import request
 from flask_restful_swagger import swagger
 
 from src.services.db_services import LocalDatabase
 from src.constants.constants import db_file_path
 from src.commons.json_utils import to_json
-from src.constants.constants import (
-    HTTP_status_200
-)
+from src.constants.constants import HTTP_status_200
+
 
 class FavouriteResource(Resource):
 

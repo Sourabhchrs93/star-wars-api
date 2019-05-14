@@ -2,8 +2,6 @@ from flask_restful import Resource
 from flask import request
 from flask_restful_swagger import swagger
 
-import json
-
 from src.services.planets import PlanetsService
 from src.services.db_services import LocalDatabase
 
@@ -14,6 +12,8 @@ from src.constants.constants import (
     HTTP_status_201,
     HTTP_status_422
 )
+
+import json
 
 
 class PlanetsResource(Resource):
