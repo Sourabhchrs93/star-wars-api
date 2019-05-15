@@ -4,7 +4,7 @@ import json
 from src.constants.constants import (
     swapi_planets_url,
     HTTP_status_200,
-    HTTP_status_500
+    HTTP_status_404
 )
 from src.commons.json_utils import to_json
 
@@ -19,7 +19,7 @@ class PlanetsService:
             if page:
                 int(page)
         except Exception as e:
-            return to_json({"message": "'page' must be a integer"}, is_error=True), HTTP_status_500
+            return to_json({"message": "'page' must be a integer"}, is_error=True), HTTP_status_404
 
         params_added_url = "{0}?search={1}&page={2}".format(self.url, keyword, page)
 
