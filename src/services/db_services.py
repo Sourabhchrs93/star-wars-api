@@ -34,3 +34,11 @@ class LocalDatabase:
                     out_data.append({'name': row[1], 'url': row[2]})
 
         return out_data, len(out_data)
+
+    def clean(self):
+        try:
+            with open(self.file_path, 'w') as f:
+                f.truncate(0)
+            return True
+        except Exception as e:
+            return False

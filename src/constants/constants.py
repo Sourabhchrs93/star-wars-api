@@ -10,6 +10,7 @@ HTTP_status_200 = 200
 HTTP_status_201 = 201
 HTTP_status_422 = 422
 HTTP_status_500 = 500
+HTTP_status_404 = 404
 HTTP_status_405 = 405
 
 
